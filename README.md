@@ -30,10 +30,11 @@ sasl验证机制规范client与server之间的应答过程以及传输内容的�
 
 提供者
 ```xml
-	<dubbo:reference registry="testRegistry"
-					 id="testService" interface="com.test.TestService"  group="test"/>
+<dubbo:reference registry="testRegistry" id="testService" interface="com.test.TestService"  group="test"/>
 ```
 上在提供者的group指当前服务的分组，会在当前url加上group这个属性
 
- 
+```xml
+
+```
  
