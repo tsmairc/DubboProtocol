@@ -26,15 +26,25 @@ sasl验证机制规范client与server之间的应答过程以及传输内容的�
 		username="${dubbo.registry.username}" password="${dubbo.registry.password}"
 		tokenfile="${dubbo.registry.tokenfile}" check="false" default="true" />
 ```
-上面注册文件中的group是注册中心分组，指接口全在testGroup顶级目录下。
+上面注册文件中的group是注册中心分组，指接口全在testGroup顶级目录下。default=true表示当前是默认的注册中心，表示当提供者不填注册中心的id，则会默认选中当前的。
+![]()
 
-提供者
+默认的生产者跟消费者配置，主要是分组配置，这里配置上，全部消费者跟生产者没指定服务分组的都会变成这里的默认分组。
+```xml
+<dubbo:provider timeout="${dubbo.provider.timeout}" group="${dubbo.group}" />
+
+<dubbo:consumer check="false" retries="0" group="${dubbo.group}" />
+
+```
+
+2.提供者
 ```xml
 <dubbo:reference registry="testRegistry" id="testService" interface="com.test.TestService"  group="test"/>
 ```
-上在提供者的group指当前服务的分组，会在当前url加上group这个属性
+上在提供者的group指当前服务的分组，会在当前url加上group这个属性，例如dubbo://127.0.0.1:20881/xxxxxx?group=test
 
+3.消费者
 ```xml
-
+<dubbo:reference registry="${testRegistry}" id="test" interface="com.test.TestService" group="test"/>
 ```
- 
+上在消费者的group指当前服务的分组，当一个目录存在多个分组的时候，指定了分组消费者才能正确找到想要的提供者url
