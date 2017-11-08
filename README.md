@@ -15,7 +15,7 @@ sasl验证机制规范client与server之间的应答过程以及传输内容的�
  
  ## dubbo注册中心分组 提供者服务分组 消费者服务分组
  
- 1.dubbo.config
+#### 1.dubbo.config
  在dubbo配置文件中可以配置多个注册中心，提供者根据id选择不同的注册中心，不填Id则选用默认的注册中心
 ```xml
 <dubbo:registry id="testRegistry" group="testGroup"
@@ -34,13 +34,13 @@ sasl验证机制规范client与server之间的应答过程以及传输内容的�
 
 ```
 
-2.提供者
+#### 2.提供者
 ```xml
 <dubbo:reference registry="testRegistry" id="testService" interface="com.test.TestService"  group="test"/>
 ```
 上在提供者的group指当前服务的分组，会在当前url加上group这个属性，例如dubbo://127.0.0.1:20881/xxxxxx?group=test
 
-3.消费者
+#### 3.消费者
 ```xml
 <dubbo:reference registry="${testRegistry}" id="test" interface="com.test.TestService" group="test"/>
 ```
