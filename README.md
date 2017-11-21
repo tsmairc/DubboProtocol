@@ -45,3 +45,10 @@ sasl验证机制规范client与server之间的应答过程以及传输内容的�
 <dubbo:reference registry="${testRegistry}" id="test" interface="com.test.TestService" group="test"/>
 ```
 上在消费者的group指当前服务的分组，当一个目录存在多个分组的时候，指定了分组消费者才能正确找到想要的提供者url
+
+
+#### 4.查找到zookeeper中有注册方法，但是外部代码无法调用。
+一般是能力的端口没有通，优先检查端口。dubbo://194.196.199.92:9983/com.xxx.test/fdsfsd,因为这些端口一般只开放到内部服务机器，并不开放给外部网络。
+```doc
+telnet 194.196.199.92 9983
+```
